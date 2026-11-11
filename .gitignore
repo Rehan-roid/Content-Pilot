@@ -1,0 +1,107 @@
+# ---------------------------------------------------------------------------
+# CreatorPilot — repository ignore rules
+#
+# Rule of thumb: secrets, datasets, model weights, and anything generated
+# locally never enter git. If you must commit a fixture, force-add it
+# deliberately and say why in the pull request.
+# ---------------------------------------------------------------------------
+
+# --- Secrets and local environment ----------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+secrets/
+
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- Python tool caches and reports ---------------------------------------
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# --- Node / frontend ------------------------------------------------------
+node_modules/
+.pnpm-store/
+.npm/
+.vite/
+.turbo/
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+frontend/dist/
+frontend/build/
+
+# --- Datasets and extracted media -----------------------------------------
+data/
+datasets/
+corpora/
+uploads/
+media/
+*.parquet
+*.feather
+*.arrow
+*.h5
+*.hdf5
+*.npy
+*.npz
+
+# --- Model weights and training artefacts ---------------------------------
+models/
+checkpoints/
+runs/
+var/
+*.pt
+*.pth
+*.onnx
+*.safetensors
+*.ckpt
+*.gguf
+*.pkl
+*.joblib
+
+# --- Audio / video derived from sources -----------------------------------
+*.wav
+*.mp3
+*.m4a
+*.mp4
+*.mov
+*.webm
+*.mkv
+
+# --- Local storage and generated output -----------------------------------
+storage/
+artifacts/
+.cache/
+*.log
+logs/
+*.sqlite3
+*.db
+
+# --- Editor and OS --------------------------------------------------------
+.idea/
+.vscode/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp

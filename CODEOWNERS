@@ -1,0 +1,44 @@
+# ---------------------------------------------------------------------------
+# CODEOWNERS — CreatorPilot
+#
+# Ownership mirrors the four-member split in docs/ownership.md: that document
+# explains the boundaries, this file enforces them on pull requests.
+#
+# TODO(team): replace the @member-1 … @member-4 placeholders with the real
+# GitHub usernames. GitHub ignores handles that do not exist, so review
+# requests only start working once these are filled in.
+#
+# Last matching pattern wins.
+# ---------------------------------------------------------------------------
+
+# --- Member 1 — AI feature extraction (audio, visual, transcript, pacing) --
+/backend/app/features/                    @member-1
+
+# --- Member 2 — custom ML models, predictions, retention, analytics --------
+/backend/app/ml/                          @member-2
+/backend/app/intelligence/                @member-2
+/backend/app/recommendations/             @member-2
+
+# --- Member 3 — backend, database, APIs, infrastructure, integration -------
+/backend/app/api/                         @member-3
+/backend/app/core/                        @member-3
+/backend/app/db/                          @member-3
+/backend/app/integrations/                @member-3
+/backend/app/services/                    @member-3
+/backend/tests/                           @member-3
+/docker-compose.yml                       @member-3
+/.dockerignore                            @member-3
+/pyproject.toml                           @member-3
+/Makefile                                 @member-3
+
+# --- Member 4 — frontend, dashboard, product experience, LLM integration ---
+/frontend/                                @member-4
+/backend/app/llm/                         @member-4
+
+# --- Shared foundation: every change needs all four reviewers -------------
+/contracts/                               @member-1 @member-2 @member-3 @member-4
+/docs/                                    @member-1 @member-2 @member-3 @member-4
+/README.md                                @member-1 @member-2 @member-3 @member-4
+/.gitignore                               @member-1 @member-2 @member-3 @member-4
+/.env.example                             @member-1 @member-2 @member-3 @member-4
+/CODEOWNERS                               @member-1 @member-2 @member-3 @member-4

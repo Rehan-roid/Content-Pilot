@@ -1,0 +1,49 @@
+# Keep the build context to sources only.
+.git
+.gitignore
+.github
+.vscode
+.idea
+
+# Secrets never enter an image
+.env
+.env.*
+!.env.example
+secrets/
+
+# Python
+**/__pycache__
+**/*.py[cod]
+.venv
+venv
+**/*.egg-info
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+.coverage
+htmlcov
+
+# Node
+node_modules
+**/node_modules
+frontend/dist
+**/.vite
+**/*.tsbuildinfo
+
+# Data, models and local artefacts
+data
+datasets
+corpora
+uploads
+media
+models
+checkpoints
+runs
+var
+storage
+artifacts
+.cache
+**/*.log
+
+# Documentation is not needed inside runtime images
+docs

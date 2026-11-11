@@ -1,0 +1,50 @@
+# ---------------------------------------------------------------------------
+# CreatorPilot — local development infrastructure
+#
+# Only the agreed baseline services are defined here: PostgreSQL for
+# persistence and Redis for caching plus API-quota accounting.
+#
+# There are deliberately no application containers: the API and web images are
+# added by their owners (Members 3 and 4) once those entrypoints exist.
+# ---------------------------------------------------------------------------
+
+name: creatorpilot
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-creatorpilot}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+      POSTGRES_DB: ${POSTGRES_DB:-creatorpilot}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U ${POSTGRES_USER:-creatorpilot} -d ${POSTGRES_DB:-creatorpilot}
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  cache:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - cache_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db_data:
+  cache_data:
